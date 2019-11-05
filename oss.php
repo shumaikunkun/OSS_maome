@@ -12,54 +12,27 @@
   <body>
 
     <h1>OSSまとめ</h1>
-    <p>
 
     <?php  ?>
 
-    <?php
-
-// $url = "https://api.github.com/orgs/docker";
-// // cURLセッションを初期化
-// $ch = curl_init();
-// // オプションを設定
-// curl_setopt($ch, CURLOPT_URL, $url); // 取得するURLを指定
-// curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); // 実行結果を文字列で返す
-// curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); // サーバー証明書の検証を行わない
-// // URLの情報を取得
-// $response =  curl_exec($ch);
-// // 取得結果を表示
-// echo $response;
-// $result = json_decode($response, true);
-// // セッションを終了
-// curl_close($conn);
-
-
-// $token = '';
-// $query = '';
-// $options = [
-//     'http' => [
-//         'method' => 'POST',
-//         'header' => [
-//             'User-Agent: My User Agent',
-//             'Authorization: bearer '.$token,
-//             'Content-type: application/json; charset=UTF-8',
-//         ],
-//         'content' => json_encode(['query' => $query]),
-//     ],
-// ];
-// $context = stream_context_create($options);
-// $contents = file_get_contents('https://api.github.com/graphql', false, $context);
-// var_dump(json_decode($contents));
-
-
+<?php
 ini_set('user_agent','UserAgent');
-$json = file_get_contents('https://api.github.com/orgs/docker');
+$json = file_get_contents('https://api.github.com/orgs/github');
 $arr = json_decode($json,true);
-echo $arr["name"]
-
+$member_json = file_get_contents(str_replace("{/member}","",$arr["public_members_url"]));
+$member_arr = json_decode($member_json,true);
 ?>
 
-    </p>
+<img src=<?php echo $arr["avatar_url"]."&s=100" ?> />
+<p><?php echo $arr["name"] ?></p>
+<p><?php echo $arr["location"] ?></p>
+<p><?php echo $arr["html_url"] ?></p>
+<p><?php echo $arr["blog"] ?></p>
+<p><?php echo count($member_arr) ?></p>
+<p><?php echo $arr["public_repos"] ?></p>
+<p><?php echo explode("-",$arr["created_at"])[0] ?>年</p>
+
+
 
   </body>
 </html>
