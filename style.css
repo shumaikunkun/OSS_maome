@@ -1,3 +1,17 @@
 h1{
 color: <?php echo $color_1; ?>;
 }
+
+table{
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.img_cell{
+  width: 120px;
+  height: 120px;
+}
+
+.mem_cell .repo_cell .year_cell{
+  width: 200px;
+}
