@@ -18,8 +18,7 @@
   <?php  ?>
 
   <?php
-  $orgs=["google"];
-  #,"aws","apple","facebook","microsoft"];
+  $orgs=["google","aws","apple","facebook","microsoft"];
   ini_set('user_agent','UserAgent');
   #ini_set('Authorization','bearer ');
   foreach($orgs as $org){
@@ -30,10 +29,22 @@
   ?>
 
     <table border="1">
-      <tr> <td rowspan="4"><img src=<?php echo $arr["avatar_url"]."&s=120" ?> /></td> <td><?php echo $arr["name"] ?></td> <td colspan="2"><?php echo $arr["location"] ?></td> </tr>
-      <tr> <td colspan="3">GitHub URL：<a href=<?php echo $arr["html_url"] ?> > <?php echo $arr["html_url"] ?> </a></td> </tr>
-      <tr> <td colspan="3">公式URL：<a href=<?php echo $arr["blog"] ?> > <?php echo $arr["blog"] ?> </a></td> </tr>
-      <tr> <td>所属人数：<?php echo count($member_arr) ?></td> <td>リポジトリ数：<?php echo $arr["public_repos"] ?></td> <td>作成年：<?php echo explode("-",$arr["created_at"])[0] ?>年</td> </tr>
+      <tr>
+        <td rowspan="4" class="img_cell" width="120" height="120"><img src=<?php echo $arr["avatar_url"]."&s=120" ?> /></td>
+        <td><?php echo $arr["name"] ?></td>
+        <td colspan="2"><?php echo $arr["location"] ?></td>
+      </tr>
+      <tr>
+        <td colspan="3">GitHub URL：<a href=<?php echo $arr["html_url"] ?> > <?php echo $arr["html_url"] ?> </a></td>
+      </tr>
+      <tr>
+        <td colspan="3">公式URL：<a href=<?php echo $arr["blog"] ?> > <?php echo $arr["blog"] ?> </a></td>
+      </tr>
+      <tr>
+        <td class="mem_cell" width="200">所属人数：<?php echo count($member_arr) ?></td>
+        <td class="repo_cell" width="200">リポジトリ数：<?php echo $arr["public_repos"] ?></td>
+        <td class="year_cell" width="200">作成年：<?php echo explode("-",$arr["created_at"])[0] ?>年</td>
+      </tr>
     </table>
 
   <?php } ?>
